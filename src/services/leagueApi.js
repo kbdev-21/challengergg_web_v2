@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:666';
+//const baseUrl = 'http://localhost:666';
+const baseUrl = 'https://challengergg-server.onrender.com';
 
 export async function fetchPlayerByRiotId(name, tag) {
   try {
