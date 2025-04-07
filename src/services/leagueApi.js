@@ -54,7 +54,7 @@ export async function getAllChampions() {
 }
 
 export async function getChampionsByName(name) {
-  const url = `http://localhost:666/api/champions/by-name/${name}`;
+  const url = `${baseUrl}/api/champions/by-name/${name}`;
   const response = await axios.get(url);
   if (response.status === 200) {
     return response.data.champions;
