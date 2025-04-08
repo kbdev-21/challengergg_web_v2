@@ -22,13 +22,13 @@ const darkTheme = createTheme({
       dark1: "#8a2f2f",
     },
     bg: {
-      main: "#222222", //content box background
-      dark1: "#111111", //behind background
+      main: "#181818", //content box background
+      dark1: "#000000", //behind background
     },
     content: {
       main: "#ffffff", //text
       light1: "#bdbdbd", //light text
-      light2: "#424242", //border
+      light2: "#303030", //border
     },
 
     tier: {
