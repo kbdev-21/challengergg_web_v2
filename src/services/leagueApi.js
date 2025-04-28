@@ -63,3 +63,14 @@ export async function getChampionsByName(name) {
     return null;
   }
 }
+
+export async function fetchAccountStatsByPuuid(puuid) {
+  const url = `${baseUrl}/api/accounts/stats/by-puuid/${puuid}`;
+  const response = await axios.get(url);
+  if (response.status === 200) {
+    return response.data.stats;
+  } else {
+    console.log("error");
+    return null;
+  }
+}

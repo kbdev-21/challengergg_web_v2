@@ -246,6 +246,7 @@ function ChampionsPage() {
           width: 1000,
           marginTop: 1,
           backgroundColor: "bg.main",
+          minHeight: 86
         }}
       >
         <Box

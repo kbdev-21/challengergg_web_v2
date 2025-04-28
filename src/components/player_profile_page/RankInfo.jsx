@@ -27,13 +27,13 @@ function RankInfo({ playerRank }) {
     <>
       <Box
         sx={{
-          padding: 0.6,
+          padding: 1,
           backgroundColor: "bg.main",
           borderRadius: 1,
           width: 260,
         }}
       >
-        <Box sx={{ marginX: 0.5, padding: 1, borderRadius: 1 }}>
+        <Box sx={{ marginX: 0.5}}>
           <Typography variant="body2">Ranked Solo/Duo</Typography>
           <Box sx={{ height: 5 }}></Box>
           <Box sx={{ display: "flex" }}>
@@ -61,8 +61,8 @@ function RankInfo({ playerRank }) {
             </Box>
           </Box>
         </Box>
-        <Divider />
-        <Box sx={{ marginX: 0.5, padding: 1, borderRadius: 1 }}>
+        <Divider sx={{ borderColor: 'content.light2' }} />
+        <Box sx={{ marginX: 0.5, marginTop: 1}}>
           <Typography variant="body2">Ranked Flex</Typography>
           <Box sx={{ height: 5 }}></Box>
           <Box sx={{ display: "flex" }}>

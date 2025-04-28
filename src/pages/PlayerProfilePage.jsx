@@ -30,17 +30,34 @@ function PlayerProfilePage() {
     queryFn: () => fetchPlayerByRiotId(name, tag),
   });
 
-  async function handleUpdate() {
-  }
+  async function handleUpdate() {}
 
   if (isLoading) {
     return <LoadingCircular />;
   }
   if (isError) {
-    return <div>Player Not Found</div>;
+    return (
+      <Box
+        sx={{
+          backgroundColor: "bg.dark1",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h4">Player Not Found</Typography>
+        <Box>
+          <Typography variant="h6">- This player might changed their name</Typography>
+          <Typography variant="h6">- Server might be overloaded</Typography>
+          <Typography variant="h6">- Recheck your internet connection</Typography>
+        </Box>
+      </Box>
+    );
   }
   return (
-    <Box sx={{ backgroundColor: "bg.dark1", minHeight: "100vh"}}>
+    <Box sx={{ backgroundColor: "bg.dark1", minHeight: "100vh" }}>
       <InfoHeader
         playerInfo={playerInfo}
         profileIconUrl={getProfileIconUrl(
