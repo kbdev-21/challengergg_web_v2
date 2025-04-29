@@ -1,15 +1,22 @@
 import { formatRank } from "../../utils/stringUtils";
 import {
-    Badge,
-    Box,
-    Button,
-    CircularProgress,
-    Divider,
-    GlobalStyles,
-    Typography,
-  } from "@mui/material";
+  Badge,
+  Box,
+  Button,
+  CircularProgress,
+  Divider,
+  GlobalStyles,
+  Typography,
+} from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useState } from "react";
+import { useGlobal } from "../../contexts/GlobalContext";
 
-function InfoHeader({ playerInfo, profileIconUrl, handleUpdate }) {
+function InfoHeader({ playerInfo, profileIconUrl }) {
+  const { toggleFollow, checkFollow } = useGlobal();
+  const [isFollowing, setIsFollowing] = useState(checkFollow(playerInfo?.puuid));
+
   return (
     <Box
       sx={{
@@ -50,7 +57,7 @@ function InfoHeader({ playerInfo, profileIconUrl, handleUpdate }) {
               width: 100,
               borderRadius: "20%",
               border: "2px solid",
-              borderColor : 'sub.main'
+              borderColor: "sub.main",
             }}
           />
         </Badge>
@@ -68,7 +75,11 @@ function InfoHeader({ playerInfo, profileIconUrl, handleUpdate }) {
             {playerInfo?.gameName}
           </Typography>
           <Box sx={{ width: 5 }} />
-          <Typography variant="h5" color="content.light1" sx={{ fontWeight: 400 }}>
+          <Typography
+            variant="h5"
+            color="content.light1"
+            sx={{ fontWeight: 400 }}
+          >
             #{playerInfo?.tagLine}
           </Typography>
         </Box>
@@ -82,7 +93,12 @@ function InfoHeader({ playerInfo, profileIconUrl, handleUpdate }) {
           </Typography>
           <Divider
             orientation="vertical"
-            sx={{ marginX: 0.7, height: 15, alignSelf: "center", backgroundColor: 'content.light2' }}
+            sx={{
+              marginX: 0.7,
+              height: 15,
+              alignSelf: "center",
+              backgroundColor: "content.light2",
+            }}
           />
           <Typography
             variant="subtitle2"
@@ -95,24 +111,48 @@ function InfoHeader({ playerInfo, profileIconUrl, handleUpdate }) {
           </Typography>
         </Box>
         <Box sx={{ mt: 0.5 }} />
-        <Box>
-          <Button
-            onClick={handleUpdate}
-            variant="contained"
-            sx={{
+        <Button
+          onClick={() => {
+            setIsFollowing(isFollowing ? false : true);
+            toggleFollow(playerInfo?.puuid);
+          }}
+          variant="contained"
+          sx={{
+            paddingX: 1.5,
+            paddingY: 1,
+            boxShadow: "none",
+            backgroundColor: "main.main",
+            transition: "none",
+            textTransform: "none",
+            "&:hover": {
               boxShadow: "none",
-              backgroundColor: "main.main" ,
-              transition: "none",
-              textTransform: "none",
-              "&:hover": {
-                boxShadow: "none",
-                backgroundColor: "main.dark1",
-              },
+              backgroundColor: "main.dark1",
+            },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            Update
-          </Button>
-        </Box>
+            {isFollowing ? (
+              <FavoriteIcon
+                sx={{ fontSize: 20, color: "white" }}
+              ></FavoriteIcon>
+            ) : (
+              <FavoriteBorderIcon
+                sx={{ fontSize: 20, color: "white" }}
+              ></FavoriteBorderIcon>
+            )}
+
+            <Box sx={{ width: 6 }}></Box>
+            <Typography variant="subtitle2" color="white">
+              {isFollowing ? "Followed" : "Follow"}
+            </Typography>
+          </Box>
+        </Button>
       </Box>
     </Box>
   );

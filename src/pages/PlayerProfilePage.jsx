@@ -30,8 +30,6 @@ function PlayerProfilePage() {
     queryFn: () => fetchPlayerByRiotId(name, tag),
   });
 
-  async function handleUpdate() {}
-
   if (isLoading) {
     return <LoadingCircular />;
   }
@@ -64,7 +62,6 @@ function PlayerProfilePage() {
           playerInfo.profileIconId,
           currentPatch
         )}
-        handleUpdate={handleUpdate}
       ></InfoHeader>
       <ProfileBody povPuuid={playerInfo.puuid} playerRank={playerInfo.rank} />
     </Box>

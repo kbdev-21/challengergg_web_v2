@@ -86,8 +86,8 @@ function ChampStats({ puuid }) {
 
   function ChampDisplay({ stat }) {
     const loseRate = 100 - stat.winRate;
-    const winWidth = (82 * stat.winRate) / 100;
-    const loseWidth = (82 * loseRate) / 100;
+    const winWidth = (80 * stat.winRate) / 100;
+    const loseWidth = (80 * loseRate) / 100;
     return (
       <Box
         sx={{
@@ -205,7 +205,7 @@ function ChampStats({ puuid }) {
           <Box sx={{ width: 5 }}></Box>
           <Box
             sx={{
-              width: 32,
+              width: 30,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

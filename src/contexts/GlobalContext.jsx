@@ -8,9 +8,12 @@ const GlobalContext = createContext();
 // Provider Component
 export function GlobalProvider({ children }) {
   const storedIsDarkMode = localStorage.getItem('isDarkMode') === 'true';
+  const storedFollowingAccounts = JSON.parse(localStorage.getItem('followingAccounts') || '[]'); 
 
   const [isDarkMode, setIsDarkMode] = useState(storedIsDarkMode);
-  const {data: currentPatch, isLoading, isError} = useQuery({
+  const [followingAccounts, setFollowingAccounts] = useState(storedFollowingAccounts);
+
+  const {data: currentPatch} = useQuery({
     queryKey: ['currentPatch'],
     queryFn: () => fetchCurrentLeaguePatch()
   });
@@ -19,9 +22,20 @@ export function GlobalProvider({ children }) {
     localStorage.setItem("isDarkMode", isDarkMode);
   }, [isDarkMode]);
 
+  useEffect(() => {
+    localStorage.setItem("followingAccounts", JSON.stringify(followingAccounts));
+  }, [followingAccounts]);
+
+  function toggleFollow(puuid) {
+    setFollowingAccounts((prev) => prev.includes(puuid) ? prev.filter(id => id != puuid) : [...prev, puuid]);
+  }
+
+  function checkFollow(puuid) {
+    return followingAccounts.includes(puuid);
+  }
 
   return (
-    <GlobalContext.Provider value={{ currentPatch, isLoading, isError, isDarkMode, setIsDarkMode }}>
+    <GlobalContext.Provider value={{ currentPatch, isDarkMode, setIsDarkMode, checkFollow, toggleFollow }}>
       {children}
     </GlobalContext.Provider>
   );
