@@ -1,14 +1,20 @@
 import { Box, CircularProgress } from "@mui/material";
 
-function LoadingCircular() {
+function LoadingCircular({ isPage }) {
+  let minHeight = "100vh";
+  let pt = 4;
+  if (isPage === false) {
+    minHeight = "0vh";
+    pt = 0;
+  }
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
-        paddingTop: 4, // optional margin-top if needed
-        minHeight: "100vh",
-        backgroundColor: 'bg.dark1'
+        paddingTop: pt, // optional margin-top if needed
+        minHeight: minHeight,
+        backgroundColor: "bg.dark1",
       }}
     >
       <CircularProgress

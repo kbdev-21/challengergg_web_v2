@@ -10,11 +10,12 @@ import {
 import { useState } from "react";
 import MatchCard from "./MatchCard";
 import LoadingCircular from "../ui/LoadingCircular";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchMatchHistoryByPuuid } from "../../services/leagueApi";
 
 function MatchHistory({ povPuuid }) {
   const [selectingFilter, setSelectingFilter] = useState("all");
+  const numOfMatches = 20;
   const filtersMap = {
     all: "All",
     solo: "Ranked Solo/Duo",
@@ -24,9 +25,20 @@ function MatchHistory({ povPuuid }) {
     data: matches,
     isLoading,
     isError,
-  } = useQuery({
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: ["matches", povPuuid, selectingFilter],
-    queryFn: () => fetchMatchHistoryByPuuid(povPuuid, selectingFilter),
+    queryFn: ({ pageParam = 0 }) =>
+      fetchMatchHistoryByPuuid(
+        povPuuid,
+        selectingFilter,
+        pageParam,
+        numOfMatches
+      ),
+    getNextPageParam: (lastPage, allPages) => {
+      return allPages.length * numOfMatches;
+    },
   });
 
   return (
@@ -109,14 +121,37 @@ function MatchHistory({ povPuuid }) {
       ) : isError ? (
         <Typography>Error</Typography>
       ) : (
-        <Box sx={{ marginTop: 1, borderRadius: 1 }}>
-          {matches.map((match, index) => (
-            <Box key={index}>
-              <MatchCard matchData={match} povPuuid={povPuuid} />
-              <Box sx={{ height: 10 }} />
-            </Box>
-          ))}
-        </Box>
+        <>
+          <Box sx={{ marginTop: 1, borderRadius: 1 }}>
+            {matches.pages.map((page, i) =>
+              page.map((match, index) => (
+                <Box key={`${i}-${index}`}>
+                  <MatchCard matchData={match} povPuuid={povPuuid} />
+                  <Box sx={{ height: 10 }} />
+                </Box>
+              ))
+            )}
+          </Box>
+          <Box
+            onClick={() => fetchNextPage()}
+            sx={{
+              width: 850,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "bg.main",
+              paddingY: 1.5,
+              borderRadius: 1,
+              cursor: "pointer",
+            }}
+          >
+            {isFetchingNextPage ? (
+              <LoadingCircular isPage={false}></LoadingCircular>
+            ) : (
+              <Typography variant="subtitle2">Show more matches</Typography>
+            )}
+          </Box>
+        </>
       )}
     </>
   );

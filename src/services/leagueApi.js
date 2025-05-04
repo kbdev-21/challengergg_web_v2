@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const baseUrl = 'http://localhost:666';
-const baseUrl = 'https://challengergg-server.onrender.com';
+const baseUrl = 'http://localhost:666';
+//const baseUrl = 'https://challengergg-server.onrender.com';
 
 export async function fetchPlayerByRiotId(name, tag) {
   try {
@@ -19,9 +19,9 @@ export async function fetchPlayerByRiotId(name, tag) {
   }
 }
 
-export async function fetchMatchHistoryByPuuid(puuid, queueFilter) {
+export async function fetchMatchHistoryByPuuid(puuid, queueFilter, start, count) {
   const url = `${baseUrl}/api/matches/by-puuid/`;
-  const response = await axios.get(`${url}${puuid}?queueFilter=${queueFilter}&count=20`);
+  const response = await axios.get(`${url}${puuid}?queueFilter=${queueFilter}&start=${start}&count=${count}`);
   if (response.status === 200) {
     return response.data.matches;
   } else {
