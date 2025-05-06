@@ -52,6 +52,13 @@ function MatchCard({ matchData, povPuuid }) {
     }
   }
 
+  let highestKbScore = 0;
+  matchData.players.forEach((player) => {
+    if (player.kbScore > highestKbScore) {
+      highestKbScore = player.kbScore;
+    }
+  });
+
   return (
     <Box>
       <Box
@@ -320,6 +327,17 @@ function MatchCard({ matchData, povPuuid }) {
                 </Typography>
               </Box>
             </Tooltip>
+            {povPlayerInfo?.kbScore == highestKbScore ? (
+              <>
+                <Box sx={{ height: 2 }}></Box>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ color: "sub.main", fontSize: 12 }}
+                  >
+                    MVP
+                  </Typography>
+              </>
+            ) : null}
           </Box>
         </Box>
         <Box sx={{ width: 50 }} />
