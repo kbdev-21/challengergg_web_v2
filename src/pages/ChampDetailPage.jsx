@@ -8,6 +8,7 @@ import { getChampionAvatarUrl } from "../services/ddragonApi";
 import { champTierColor, champTierDescription } from "../utils/stringUtils";
 import { useState } from "react";
 import { positionTextFormatMap } from "../utils/maps";
+import ChampBuild from "../components/champ_detail_page/ChampBuild";
 
 function ChampDetailPage() {
   const { currentPatch } = useGlobal();
@@ -37,7 +38,7 @@ function ChampDetailPage() {
       <Box height={10}></Box>
       <Box
         sx={{
-          marginX: "20%",
+          marginX: "25%",
           backgroundColor: "bg.main",
           borderRadius: 1,
           border: "1px solid",
@@ -219,6 +220,8 @@ function ChampDetailPage() {
           </Box>
         </Box>
       </Box>
+      <Box height={10}></Box>
+      <ChampBuild champ={showingChamps[curPosSelection]} currentPatch={currentPatch}></ChampBuild>
     </Box>
   );
 }

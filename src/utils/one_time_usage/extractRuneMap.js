@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const url = `https://ddragon.leagueoflegends.com/cdn/14.4.1/data/en_US/runesReforged.json`;
-const res = await axios.get(url);
+const styleUrl = `https://ddragon.leagueoflegends.com/cdn/15.9.1/data/en_US/runesReforged.json`;
+const res = await axios.get(styleUrl);
 const runes = res.data;
 
 const runeIdMap = {};
@@ -15,8 +15,8 @@ runes.forEach((tree) => {
 
 console.log(runeIdMap);
 
-const url2 = `https://ddragon.leagueoflegends.com/cdn/14.4.1/data/en_US/runesReforged.json`;
-const res2 = await axios.get(url2);
+const runeUrl = `https://ddragon.leagueoflegends.com/cdn/15.9.1/data/en_US/runesReforged.json`;
+const res2 = await axios.get(runeUrl);
 const runeStyles = res2.data;
 
 const runeStyleMap = {};
