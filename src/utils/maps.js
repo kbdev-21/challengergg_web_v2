@@ -6,9 +6,9 @@ export const positionTextFormatMap = {
   SPT: "Support",
 };
 
-export const gameModeIdFormattedToTextMap = {
-  RANKED_SOLO: "Ranked Solo/Duo",
-  RANKED_FLEX: "Ranked Flex 5v5",
+export const queueEnumToTextMap = {
+  SOLO: "Ranked Solo/Duo",
+  FLEX: "Ranked Flex 5v5",
   ARAM: "ARAM",
   NORMAL: "Normal",
 };

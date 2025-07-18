@@ -1,6 +1,6 @@
-export function formatRank(rank) {
-  const [tier, division] = rank.split(" ");
-  return `${tier.charAt(0)}${tier.slice(1).toLowerCase()} ${division}`;
+export function upperCaseFirstLowerCaseAll(string) {
+  if (!string) return "";
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
 export function formatSecondsToMinutesAndSeconds(seconds) {
