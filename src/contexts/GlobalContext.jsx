@@ -7,7 +7,7 @@ const GlobalContext = createContext();
 
 // Provider Component
 export function GlobalProvider({ children }) {
-  const storedIsDarkMode = localStorage.getItem('isDarkMode') === 'true';
+  const storedIsDarkMode = localStorage.getItem('isDarkMode') ?? 'true';
   const storedFollowingAccounts = JSON.parse(localStorage.getItem('followingAccounts') || '[]'); 
 
   const [isDarkMode, setIsDarkMode] = useState(storedIsDarkMode);
