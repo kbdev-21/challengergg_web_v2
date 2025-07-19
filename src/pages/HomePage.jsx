@@ -1,15 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import {ChallengerggLogo} from "../components/ui/ChallengerggLogo.jsx";
 
 export function HomePage() {
     return (
-        <>
-            <Box height={40}></Box>
-            <Typography variant="h3" sx={{ fontWeight: 500, color: "white" }}>
-                CHALLENGER.GG
-            </Typography>
-            <Box height={20}></Box>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-            </Box>
-        </>
+        <Box sx={{display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}>
+            <Box height={"100px"}></Box>
+            <ChallengerggLogo sizeCode={"l"}></ChallengerggLogo>
+        </Box>
     );
 }

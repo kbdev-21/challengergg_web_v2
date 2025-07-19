@@ -1,4 +1,5 @@
 import {Box} from "@mui/material";
+import {Navbar} from "./Navbar.jsx";
 
 export function PageLayout({ children }) {
     return (
@@ -9,6 +10,7 @@ export function PageLayout({ children }) {
             display: "flex",
             flexDirection: "column",
         }}>
+            <Navbar/>
             <Box sx={{ flex: 1 }}>{children}</Box>
         </Box>
     )

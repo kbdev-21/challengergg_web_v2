@@ -162,7 +162,7 @@ export function MatchCard({matchData, puuid}) {
                     marginRight: "20px",
                     flexDirection: "column"
                 }}>
-                    <Typography sx={{color: "content.2", fontSize: "12px", fontWeight: "400"}}>KB Score</Typography>
+                    <Typography sx={{color: "content.2", fontSize: "12px", fontWeight: "400"}}>KB-Score</Typography>
                     <Box height={"4px"}></Box>
                     <KbScoreDisplay score={selfPerformance?.kbScore}></KbScoreDisplay>
                     <Box height={"4px"}></Box>

@@ -39,37 +39,37 @@ export function MatchDetail({matchData}) {
                 marginTop: "10px"
             }}>
                 <Box sx={{width: "180px"}}>
-                    <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
+                    <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
                         Scoreboard
                     </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
-                        KB Score
+                    <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
+                        KB-Score
                     </Typography>
                 </Box>
                 <Box sx={{width: "100px", display: "flex", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
+                    <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
                         KDA
                     </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
+                    <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
                         Damage
                     </Typography>
                 </Box>
                 <Box sx={{width: "60px", display: "flex", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
+                    <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
                         CS
                     </Typography>
                 </Box>
                 <Box sx={{width: "50px", display: "flex", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
+                    <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
                         Vision
                     </Typography>
                 </Box>
                 <Box sx={{width: "160px", display: "flex", justifyContent: "center", marginX: "10px"}}>
-                    <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
+                    <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
                         Items
                     </Typography>
                 </Box>
