@@ -1,8 +1,8 @@
 import {Box, Typography} from "@mui/material";
 
-export function KbScoreDisplay({score}) {
+export function KbScoreDisplay({score, extraSx}) {
     let color = "rate.4";
-    if(score >= 80) color = "rate.1";
+    if(score >= 75) color = "rate.1";
     else if(score >= 50) color = "rate.3";
 
     return (
@@ -14,7 +14,8 @@ export function KbScoreDisplay({score}) {
             borderRadius: "4px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            ...extraSx,
         }}>
             <Typography sx={{color: "content.1", fontSize: "18px", fontWeight: "400"}}>{score}</Typography>
         </Box>
