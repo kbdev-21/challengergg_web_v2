@@ -13,6 +13,13 @@ export const queueEnumToTextMap = {
   NORMAL: "Normal",
 };
 
+export const queueEnumToShortTextMap = {
+  SOLO: "Ranked Solo",
+  FLEX: "Ranked Flex",
+  ARAM: "ARAM",
+  NORMAL: "Normal",
+};
+
 export const spellIdMap = {
   4: "SummonerFlash",
   7: "SummonerHeal",

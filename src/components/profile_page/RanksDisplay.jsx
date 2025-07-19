@@ -5,9 +5,7 @@ import {upperCaseFirstLowerCaseAll} from "../../utils/stringUtils.js";
 
 export function RanksDisplay({ranks}) {
     return (
-        <Box sx={{
-            width: "290px"
-        }}>
+        <Box>
             <RankDisplay index={0}></RankDisplay>
             <Box height={"10px"}></Box>
             <RankDisplay index={1}></RankDisplay>
@@ -16,7 +14,7 @@ export function RanksDisplay({ranks}) {
 
     function RankDisplay({index}) {
         return (<Box sx={{
-                width: "290px",
+                width: "300px",
                 backgroundColor: "bg.2",
                 padding: "12px",
                 border: "0.5px solid",

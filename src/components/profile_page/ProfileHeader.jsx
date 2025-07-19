@@ -15,7 +15,7 @@ export function ProfileHeader({playerData}) {
         <Box>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Box sx={{
-                    width: "1000px",
+                    width: "1060px",
                     backgroundColor: "bg.2",
                     marginTop: "40px",
                     padding: "20px",
@@ -46,7 +46,7 @@ export function ProfileHeader({playerData}) {
                                     </Typography>
                                 </Box>
                                 <Box height={"12px"}></Box>
-                                <TextIconButton text={"Share"} icon={<ShareIcon sx={{fontSize: "16px"}}/>}></TextIconButton>
+                                <TextIconButton text={"Share"} icon={<ShareIcon sx={{fontSize: "14px"}}/>}></TextIconButton>
                             </Box>
                         </Box>
                         <Box height={"20px"}></Box>

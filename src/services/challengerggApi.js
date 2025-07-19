@@ -13,3 +13,14 @@ export async function fetchPlayerByRiotId(name, tag) {
         throw new Error("Failed to fetch data");
     }
 }
+
+export async function fetchMatchesByPuuid(puuid, start, count) {
+    const url = `${baseUrl}/api/v1/matches/by-puuid/${puuid}?start=${start}&count=${count}`;
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (e) {
+        console.error("Error fetching data:", e);
+        throw new Error("Failed to fetch data");
+    }
+}

@@ -17,7 +17,7 @@ export function ProfilePage() {
     } = useQuery({
         queryKey: ["playerData", name, tag],
         queryFn: () => fetchPlayerByRiotId(name, tag),
-    })
+    });
 
     if(isLoading) {
         return <CircularProgress />;

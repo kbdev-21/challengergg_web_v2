@@ -10,19 +10,17 @@ export function formatSecondsToMinutesAndSeconds(seconds) {
   return `${minutes}m${leftSeconds < 10 ? "0" + leftSeconds : leftSeconds}s`;
 }
 
-export function kdaFormat(kda) {
-  return kda.toFixed(2); // Ensures two decimal places
+export function placementToDisplayString(placement, isMvp, isSvp) {
+  if(isMvp) return "MVP";
+  if(isSvp) return "SVP";
+  if(placement === 1) return placement + "st";
+  if(placement === 2) return placement + "nd";
+  if(placement === 3) return placement + "rd";
+  return placement + "th";
 }
 
-export function kbScoreColor(score) {
-  if (score < 50) {
-    return "lose.main";
-  }
-  if (score < 75) {
-    return "win.main";
-  } else {
-    return "sub.main";
-  }
+export function kdaFormat(kda) {
+  return kda.toFixed(2); // Ensures two decimal places
 }
 
 export function kbScoreDescription(score) {
