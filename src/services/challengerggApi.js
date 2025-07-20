@@ -24,3 +24,14 @@ export async function fetchMatchesByPuuid(puuid, start, count) {
         throw new Error("Failed to fetch data");
     }
 }
+
+export async function searchAll(searchKey) {
+    const url = `${baseUrl}/api/v1/search?key=${searchKey}`;
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (e) {
+        console.error("Error fetching data:", e);
+        throw new Error("Failed to fetch data");
+    }
+}

@@ -9,6 +9,8 @@ import {
 import {useGlobal} from "../../contexts/GlobalContext.jsx";
 import {KbScoreDisplay} from "../ui/KbScoreDisplay.jsx";
 import {kdaFormat, placementToDisplayString} from "../../utils/stringUtils.js";
+import {TextBadge} from "../ui/TextBadge.jsx";
+import {Fragment} from "react";
 
 export function MatchDetail({matchData}) {
     const {currentPatch} = useGlobal();
@@ -87,12 +89,12 @@ export function MatchDetail({matchData}) {
                 flexDirection: "column"
             }}>
                 {matchData?.performances.map((performance, index) => (
-                    <>
+                    <Box key={index}>
                         <PerformanceDetail performance={performance}></PerformanceDetail>
                         {index !== matchData.performances.length - 1 && (
                             <Divider sx={{ backgroundColor: "bg.3" }} />
                         )}
-                    </>
+                    </Box>
                 ))}
             </Box>
         </>
@@ -150,7 +152,8 @@ export function MatchDetail({matchData}) {
                 paddingX: "10px"
             }}>
                 <Box sx={{width: "80px", display: "flex"}}>
-                    <InternetImage
+                    <TextBadge fontSize={"10px"} left={"80%"} color={"bg.3"} textColor={"content.1"} content={performance?.championLevel}>
+                        <InternetImage
                         height={champImgSize}
                         width={champImgSize}
                         url={getChampionAvatarUrl(performance?.championName, currentPatch)}
@@ -159,8 +162,9 @@ export function MatchDetail({matchData}) {
                             outline: "2px solid",
                             outlineColor: performance?.win ? "sub.win" : "sub.lose",
                             outlineOffset: "-1px", // pushes the outline inward
-                        }}
-                    />
+                        }}/>
+                    </TextBadge>
+
                     <Box width={"4px"}></Box>
                     <Box sx={{display: "flex", flexDirection: "column"}}>
                         <InternetImage
@@ -316,8 +320,8 @@ export function MatchDetail({matchData}) {
                     justifyContent: "space-between",
                     marginX: "10px"
                 }}>
-                    {performance?.itemIds?.map((itemId) => (
-                        <>
+                    {performance?.itemIds?.map((itemId, index) => (
+                        <Fragment key={index}>
                             {itemId !== 0 ?
                                 <InternetImage
                                     height={"20px"}
@@ -334,7 +338,7 @@ export function MatchDetail({matchData}) {
                                     }}
                                 />
                             }
-                        </>
+                        </Fragment>
                     ))}
                 </Box>
             </Box>

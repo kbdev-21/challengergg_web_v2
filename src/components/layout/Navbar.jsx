@@ -3,6 +3,7 @@ import {ChallengerggLogo} from "../ui/ChallengerggLogo.jsx";
 import {Link, useLocation} from "react-router";
 import LanguageIcon from '@mui/icons-material/Language';
 import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
+import {SearchBar} from "../ui/SearchBar.jsx";
 
 export function Navbar() {
     const location = useLocation();
@@ -11,7 +12,7 @@ export function Navbar() {
             <Link to={url} style={{ textDecoration: "none" }}>
                 <Box sx={{
                     cursor: "pointer",
-                    paddingX: "20px",
+                    paddingX: "30px",
                     height: "70px",
                     display: "flex",
                     alignItems: "center",
@@ -44,32 +45,33 @@ export function Navbar() {
             alignItems: "center",
             justifyContent: "space-between",
         }}>
-            <Box sx={{display: "flex", alignItems: "center", width: "600px", justifyContent: "space-between"}}>
+            <Box sx={{display: "flex", alignItems: "center"}}>
                 <ChallengerggLogo/>
+                <Box width={"30px"}></Box>
                 <NavItem text={"Champions"} url={"/champions"}></NavItem>
                 <NavItem text={"Leaderboards"} url={"/leaderboards"}></NavItem>
                 <NavItem text={"Chat"} url={"/chat"}></NavItem>
             </Box>
             <Box sx={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
-                <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between", width: "80px"}}>
-                    <LanguageIcon sx={{
-                        fontSize: "26px",
-                        color: "content.2",
-                        cursor: "pointer",
-                        "&:hover": {
-                            color: "content.1"
-                        }
-                    }}/>
-                    <InfoOutlineIcon sx={{
-                        fontSize: "26px",
-                        color: "content.2",
-                        cursor: "pointer",
-                        "&:hover": {
-                            color: "content.1"
-                        }
-                    }}/>
-                </Box>
-
+                {location.pathname === "/" ? null : <SearchBar width={"400px"} barColor={"bg.1"}></SearchBar>}
+                <Box width={"30px"}></Box>
+                <LanguageIcon sx={{
+                    fontSize: "26px",
+                    color: "content.2",
+                    cursor: "pointer",
+                    "&:hover": {
+                        color: "content.1"
+                    }
+                }}/>
+                <Box width={"30px"}></Box>
+                <InfoOutlineIcon sx={{
+                    fontSize: "26px",
+                    color: "content.2",
+                    cursor: "pointer",
+                    "&:hover": {
+                        color: "content.1"
+                    }
+                }}/>
             </Box>
         </Box>
     )

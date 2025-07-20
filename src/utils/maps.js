@@ -4,6 +4,7 @@ export const positionTextFormatMap = {
   MID: "Mid",
   ADC: "ADC",
   SPT: "Support",
+  UNK: "Unknown",
 };
 
 export const queueEnumToTextMap = {

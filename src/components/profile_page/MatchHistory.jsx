@@ -26,10 +26,10 @@ export function MatchHistory({playerData}) {
     return (
         <Box >
             {matchesData?.map((match, index) => (
-                <>
+                <Box key={index}>
                     <MatchCard matchData={match} puuid={puuid} />
                     {index < matchesData.length - 1 && <Box height="10px" />}
-                </>
+                </Box>
             ))}
         </Box>
     );

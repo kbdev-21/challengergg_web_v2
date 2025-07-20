@@ -9,7 +9,6 @@ import {OverviewBody} from "./OverviewBody.jsx";
 
 export function ProfileHeader({playerData}) {
     const {currentPatch} = useGlobal();
-    console.log(playerData);
     const profileIconUrl = getProfileIconUrl(playerData?.profileIconId, currentPatch);
     return (
         <Box>
@@ -40,7 +39,7 @@ export function ProfileHeader({playerData}) {
                                     <Typography sx={{color: "content.1", fontSize: "26px", fontWeight: "500"}}>
                                         {playerData?.gameName}
                                     </Typography>
-                                    <Box width={"10px"}></Box>
+                                    <Box width={"4px"}></Box>
                                     <Typography sx={{color: "content.2", fontSize: "26px", fontWeight: "400"}}>
                                         #{playerData?.tagLine}
                                     </Typography>

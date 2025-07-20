@@ -1,6 +1,4 @@
 import {Box, CircularProgress, Typography} from "@mui/material";
-import {useQuery} from "@tanstack/react-query";
-import {fetchMatchesByPuuid, fetchPlayerByRiotId} from "../../services/challengerggApi.js";
 import {queueEnumToShortTextMap} from "../../utils/maps.js";
 import {
     formatSecondsToMinutesAndSeconds,
@@ -18,7 +16,7 @@ import {
 } from "../../services/ddragonApi.js";
 import {KbScoreDisplay} from "../ui/KbScoreDisplay.jsx";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import {useState} from "react";
+import {Fragment, useState} from "react";
 import {MatchDetail} from "./MatchDetail.jsx";
 
 export function MatchCard({matchData, puuid}) {
@@ -134,8 +132,8 @@ export function MatchCard({matchData, puuid}) {
                     </Box>
                     <Box height="8px"></Box>
                     <Box sx={{display: "flex"}}>
-                        {selfPerformance?.itemIds?.map((itemId) => (
-                            <>
+                        {selfPerformance?.itemIds?.map((itemId, index) => (
+                            <Fragment key={index}>
                                 {itemId !== 0 ? <InternetImage
                                     height={miniImgSize}
                                     width={miniImgSize}
@@ -150,7 +148,7 @@ export function MatchCard({matchData, puuid}) {
                                     }}/>
                                 }
                                 <Box width={gapSize}></Box>
-                            </>
+                            </Fragment>
                         ))}
                     </Box>
                 </Box>
@@ -202,8 +200,8 @@ export function MatchCard({matchData, puuid}) {
                 flexDirection: "column",
             }}
             >
-                {matchData?.performances.slice(startIndex, startIndex + 5).map((performance) => (
-                    <Box sx={{display: "flex"}}>
+                {matchData?.performances.slice(startIndex, startIndex + 5).map((performance, index) => (
+                    <Box sx={{display: "flex"}} key={index}>
                         <InternetImage
                             height={"18px"}
                             width={"18px"}
