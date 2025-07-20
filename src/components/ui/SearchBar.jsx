@@ -148,7 +148,7 @@ export function SearchBar({barColor, width}) {
                 {searchResults?.champions.length === 0 && searchResults?.players.length === 0 ? (
                         <Box sx={{height: "60px", display: "flex", alignItems: "center", justifyContent: "center"}}>
                             <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
-                                Enter Game Name #Tag if not found yet
+                                Enter your Game Name #Tag (Ex: Hide on bush #VN2)
                             </Typography>
                         </Box>
                 ) : (

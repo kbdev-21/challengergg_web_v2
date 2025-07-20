@@ -5,7 +5,7 @@ export function PageLayout({ children }) {
     return (
         <Box sx={{
             backgroundColor: "bg.1",
-            minHeight: "100vh",
+            minHeight: "2000px",
             minWidth: "1060px",
             display: "flex",
             flexDirection: "column",
