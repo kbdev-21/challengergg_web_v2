@@ -16,6 +16,7 @@ import {
 } from "../../services/ddragonApi.js";
 import {KbScoreDisplay} from "../ui/KbScoreDisplay.jsx";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {Fragment, useState} from "react";
 import {MatchDetail} from "./MatchDetail.jsx";
 
@@ -179,7 +180,7 @@ export function MatchCard({matchData, puuid}) {
                 <PerformanceList startIndex={5}/>
                 <Box width={"30px"}></Box>
                 <Box sx={{width: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-end"}}>
-                    <KeyboardArrowDownIcon sx={{fontSize: "24px", color: "content.1"}}/>
+                    {showDetail ? <KeyboardArrowUpIcon sx={{fontSize: "24px", color: "content.1"}}/> : <KeyboardArrowDownIcon sx={{fontSize: "24px", color: "content.1"}}/>}
                 </Box>
             </Box>
             {showDetail ? (
