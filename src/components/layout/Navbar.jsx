@@ -24,9 +24,9 @@ export function Navbar() {
                     <Typography
                         className="inner-text"
                         sx={{
-                            color: location.pathname === url ? "content.1" : "content.2",
+                            color: location.pathname.includes(url) ? "content.1" : "content.2",
                             fontSize: "16px",
-                            fontWeight: location.pathname === url ? "500" : "400",
+                            fontWeight: location.pathname.includes(url) ? "500" : "400",
                         }}>
                         {text}
                     </Typography>

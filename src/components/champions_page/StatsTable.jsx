@@ -207,29 +207,29 @@ export function StatsTable({statsList}) {
                     </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
+                    <Typography sx={{color: sortBy === "winRate" ? "content.1" : "content.2", fontSize: "14px", fontWeight: "500"}}>
                         {((stat?.winRate ?? 0) * 100).toFixed(2)}%
                     </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
+                    <Typography sx={{color: sortBy === "pickRate" ? "content.1" : "content.2", fontSize: "14px", fontWeight: "500"}}>
                         {((stat?.pickRate ?? 0) * 100).toFixed(2)}%
                     </Typography>
                 </Box>
                 <Box sx={{width: "40px", display: "flex", alignItems: "center", justifyContent: "center"}}>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
+                    <Typography sx={{color: sortBy === "avgSolokills" ? "content.1" : "content.2", fontSize: "14px", fontWeight: "500"}}>
                         {(stat?.avgSolokills ?? 0).toFixed(2)}
                     </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
+                    <Typography sx={{color: sortBy === "avgCspm" ? "content.1" : "content.2", fontSize: "14px", fontWeight: "500"}}>
                         {(stat?.avgCspm ?? 0).toFixed(1)}
                     </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
+                    <Typography sx={{color: sortBy === "avgDpm" ? "content.1" : "content.2", fontSize: "14px", fontWeight: "500"}}>
                         {(stat?.avgDpm ?? 0).toFixed(0)}
                     </Typography>
                 </Box>
