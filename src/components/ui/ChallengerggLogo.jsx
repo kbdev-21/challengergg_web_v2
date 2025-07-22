@@ -1,7 +1,7 @@
 import {Box, Typography} from "@mui/material";
 import {Link} from "react-router";
 
-export function ChallengerggLogo({sizeCode}) {
+export function ChallengerggLogo({sizeCode = "m"}) {
     let challengerSize = "26px";
     let ggSize = "16px";
     let gap = "4px";
