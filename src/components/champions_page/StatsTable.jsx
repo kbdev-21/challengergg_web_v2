@@ -1,230 +1,169 @@
 import {Box, Divider, Typography} from "@mui/material";
-import {TextBadge} from "../ui/TextBadge.jsx";
+import {PositionLogo} from "../ui/PositionLogo.jsx";
 import {InternetImage} from "../ui/InternetImage.jsx";
-import {
-    getChampionAvatarUrl,
-    getRuneImageUrl,
-    getRuneStyleImageUrl,
-    getSpellImageUrl
-} from "../../services/ddragonApi.js";
+import {getChampionAvatarUrl} from "../../services/ddragonApi.js";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {useGlobal} from "../../contexts/GlobalContext.jsx";
-import {useEffect, useState} from "react";
-import {PositionLogo} from "../ui/PositionLogo.jsx";
+import {useState} from "react";
+import {getColorForChampionTier} from "../../utils/stringUtils.js";
 
-export function StatsTable({championStats}) {
+export function StatsTable({statsList}) {
     const {currentPatch} = useGlobal();
 
-    const [positionFilter, setPositionFilter] = useState("TOP");
+    const [sortBy, setSortBy] = useState("power");
+    const [sortDirection, setSortDirection] = useState("DESC");
 
-    const statsList = championStats.filter((stat) => stat.position.includes(positionFilter));
+    statsList = statsList.sort((a, b) => sortDirection === "DESC" ? b[sortBy] - a[sortBy] : a[sortBy] - b[sortBy]);
 
-    const positions = ["TOP", "JGL", "MID", "ADC", "SPT", ""];
+    function sortRequest(wannaSortBy) {
+        if(wannaSortBy === sortBy) {
+            setSortDirection(sortDirection === "DESC" ? "ASC" : "DESC");
+        }
+        else {
+            setSortBy(wannaSortBy);
+            setSortDirection("DESC");
+        }
+    }
 
-    return (
-        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-            <Box height={"40px"}></Box>
-            <Box sx={{display: "flex",width: "1060px",
-                backgroundColor: "bg.2_lighter",border: "1px solid",
-                borderColor: "bg.3",
-                borderRadius: "5px",}}>
-                {positions.map((position, index) => (
-                    <Box sx={{display: "flex"}} key={index}>
-                        <Box
-                            onClick={() => {setPositionFilter(position)}}
-                            sx={{
-                                paddingX: "20px",
-                                paddingY: "10px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                cursor: "pointer"
-                            }}
-                        >
-                            {position !== "" ?
-                                <Box sx={{display: "flex"}}>
-                                    <PositionLogo position={position} colorMode={positionFilter === position ? 1 : 0}/>
-                                    <Box width={"10px"}></Box>
-                                </Box>
-                                 : null}
-                            <Typography
-                                sx={{
-                                    color: positionFilter === position ? "content.1" : "content.2",
-                                    fontSize: "14px",
-                                    fontWeight: "500"
-                                }}
-                            >
-                                {position === "" ? "ALL" : position}
-                            </Typography>
-                        </Box>
-                        <Divider orientation="vertical" sx={{ backgroundColor: "bg.3"}}/>
-                    </Box>
-                ))}
-            </Box>
-            <Box height={"10px"}></Box>
-            <TableContent/>
-        </Box>
-
-    );
-
-    function TableContent() {
+    function TitleBox({text, width, isSelected = false, clickable = false, onClick}) {
         return (
-            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <Box sx={{
-                    width: "1060px",
-                    backgroundColor: "bg.2_lighter",
-                    paddingX: "10px",
-                    borderTop: "1px solid",
-                    borderLeft: "1px solid",
-                    borderRight: "1px solid",
-                    borderColor: "bg.3",
-                    borderTopRightRadius: "5px",
-                    borderTopLeftRadius: "5px",
-                    display: "flex"
-                }}>
-                    <Box sx={{width: "60px", display: "flex", justifyContent: "center", paddingY: "10px"}}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Rank
-                        </Typography>
-                    </Box>
-                    <Box sx={{width: "60px", display: "flex", justifyContent: "center", paddingY: "10px"}}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Role
-                        </Typography>
-                    </Box>
-                    <Box sx={{width: "180px", display: "flex", justifyContent: "center", paddingY: "10px"}}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Champion
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "80px",
-                        display: "flex", alignItems: "center",
-                        justifyContent: "center", paddingY: "10px", borderBottom: "2px solid",
-                        borderColor: "main.1"
-                    }}>
-                        <Typography sx={{color: "content.1", fontWeight: "500", fontSize: "12px"}}>
-                            Tier
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "80px",
-                        display: "flex",
-                        justifyContent: "center",
-                        paddingY: "10px",
-                        alignItems: "center"
-                    }}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Win rate
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "80px",
-                        display: "flex",
-                        justifyContent: "center",
-                        paddingY: "10px",
-                        alignItems: "center"
-                    }}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Pick rate
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "40px",
-                        display: "flex",
-                        justifyContent: "center", alignItems: "center"
-                    }}>
-                        <KeyboardArrowLeftIcon sx={{color: "content.2", fontSize: "16px"}}></KeyboardArrowLeftIcon>
-                    </Box>
-                    <Box sx={{
-                        width: "80px",
-                        display: "flex",
-                        justifyContent: "center",
-                        paddingY: "10px",
-                        alignItems: "center"
-                    }}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Avg. Solokills
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "80px",
-                        display: "flex",
-                        justifyContent: "center",
-                        paddingY: "10px",
-                        alignItems: "center"
-                    }}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Avg. CS/m
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "80px",
-                        display: "flex",
-                        justifyContent: "center",
-                        paddingY: "10px",
-                        alignItems: "center"
-                    }}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Avg. Dmg/m
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "80px",
-                        display: "flex",
-                        justifyContent: "center",
-                        paddingY: "10px",
-                        alignItems: "center"
-                    }}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Dmg Type
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "100px",
-                        display: "flex",
-                        justifyContent: "center",
-                        paddingY: "10px",
-                        alignItems: "center"
-                    }}>
-                        <Typography sx={{color: "content.2", fontWeight: "400", fontSize: "12px"}}>
-                            Weak against
-                        </Typography>
-                    </Box>
-                    <Box sx={{
-                        width: "40px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}>
-                        <KeyboardArrowRightIcon sx={{color: "content.2", fontSize: "16px"}}></KeyboardArrowRightIcon>
-                    </Box>
-                </Box>
-                <Box sx={{
-                    width: "1060px",
-                    backgroundColor: "bg.2",
-                    borderBottom: "1px solid",
-                    borderLeft: "1px solid",
-                    borderRight: "1px solid",
-                    borderColor: "bg.3",
-                    borderBottomRightRadius: "5px",
-                    borderBottomLeftRadius: "5px",
+            <Box
+                onClick={onClick}
+                sx={{
+                    width: width,
                     display: "flex",
-                    flexDirection: "column"
+                    justifyContent: "center",
+                    paddingY: "10px",
+                    borderBottom: isSelected ? "2px solid" : null,
+                    borderColor: isSelected ? "main.1" : null,
+                    cursor: clickable ? "pointer" : null
+                }}
+            >
+                <Typography sx={{
+                    color: isSelected ? "content.1" : "content.2",
+                    fontWeight: isSelected ? "500" : "400",
+                    fontSize: "12px"
                 }}>
-                    {statsList?.map((stat, index) => (
-                        <Box key={index}>
-                            <StatRow stat={stat} index={index}/>
-                            {index !== statsList.length - 1 && (
-                                <Divider sx={{backgroundColor: "bg.3"}}/>
-                            )}
-                        </Box>
-                    ))}
-                </Box>
+                    {text}
+                </Typography>
             </Box>
         )
     }
+
+    return (
+        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <Box sx={{
+                width: "1060px",
+                backgroundColor: "bg.2_lighter",
+                paddingX: "10px",
+                borderTop: "1px solid",
+                borderLeft: "1px solid",
+                borderRight: "1px solid",
+                borderColor: "bg.3",
+                borderTopRightRadius: "5px",
+                borderTopLeftRadius: "5px",
+                display: "flex"
+            }}>
+                <TitleBox text={"Rank"} width={"60px"}/>
+                <TitleBox text={"Role"} width={"60px"}/>
+                <TitleBox text={"Champion"} width={"180px"}/>
+                <TitleBox
+                    onClick={() => {
+                        sortRequest("power");
+                    }}
+                    text={"Tier"}
+                    width={"80px"}
+                    isSelected={sortBy === "power"}
+                    clickable={true}
+                />
+                <TitleBox
+                    text={"Win rate"}
+                    width={"80px"}
+                    clickable={true}
+                    isSelected={sortBy === "winRate"}
+                    onClick={() => {
+                        sortRequest("winRate");
+                    }}
+                />
+                <TitleBox
+                    text={"Pick rate"}
+                    width={"80px"}
+                    clickable={true}
+                    isSelected={sortBy === "pickRate"}
+                    onClick={() => {
+                        sortRequest("pickRate");
+                    }}
+                />
+                <Box sx={{
+                    width: "40px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <KeyboardArrowLeftIcon sx={{color: "content.2", fontSize: "16px"}}></KeyboardArrowLeftIcon>
+                </Box>
+                <TitleBox
+                    text={"Avg. Solokills"}
+                    width={"80px"}
+                    clickable={true}
+                    isSelected={sortBy === "avgSolokills"}
+                    onClick={() => {
+                        sortRequest("avgSolokills");
+                    }}
+                />
+                <TitleBox
+                    text={"Avg. CS/m"}
+                    width={"80px"}
+                    clickable={true}
+                    isSelected={sortBy === "avgCspm"}
+                    onClick={() => {
+                        sortRequest("avgCspm");
+                    }}
+                />
+                <TitleBox
+                    text={"Avg. Dmg/m"}
+                    width={"80px"}
+                    clickable={true}
+                    isSelected={sortBy === "avgDpm"}
+                    onClick={() => {
+                        sortRequest("avgDpm");
+                    }}
+                />
+                <TitleBox text={"Dmg type"} width={"80px"}/>
+                <TitleBox text={"Weak against"} width={"80px"}/>
+                <Box sx={{
+                    width: "40px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <KeyboardArrowRightIcon sx={{color: "content.2", fontSize: "16px"}}></KeyboardArrowRightIcon>
+                </Box>
+            </Box>
+            <Box sx={{
+                width: "1060px",
+                backgroundColor: "bg.2",
+                borderBottom: "1px solid",
+                borderLeft: "1px solid",
+                borderRight: "1px solid",
+                borderColor: "bg.3",
+                borderBottomRightRadius: "5px",
+                borderBottomLeftRadius: "5px",
+                display: "flex",
+                flexDirection: "column"
+            }}>
+                {statsList?.map((stat, index) => (
+                    <Box key={index}>
+                        <StatRow stat={stat} index={index}/>
+                        {index !== statsList.length - 1 && (
+                            <Divider sx={{backgroundColor: "bg.3"}}/>
+                        )}
+                    </Box>
+                ))}
+            </Box>
+        </Box>
+    );
 
     function StatRow({stat, index}) {
         return (
@@ -263,7 +202,7 @@ export function StatsTable({championStats}) {
                     </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.1", fontSize: "14px", fontWeight: "500"}}>
+                    <Typography sx={{color: getColorForChampionTier(stat?.tier), fontSize: "14px", fontWeight: "800"}}>
                         {stat?.tier}
                     </Typography>
                 </Box>
@@ -278,9 +217,6 @@ export function StatsTable({championStats}) {
                     </Typography>
                 </Box>
                 <Box sx={{width: "40px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
-
-                    </Typography>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
                     <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
@@ -302,7 +238,7 @@ export function StatsTable({championStats}) {
                         physical={stat?.avgPhysicalDmg}
                         magic={stat?.avgMagicDmg}
                         trueDmg={stat?.avgTrueDmg}
-                        width={"60px"}
+                        width={"56px"}
                         height={"3px"}
                     />
                 </Box>
@@ -327,9 +263,6 @@ export function StatsTable({championStats}) {
                     }
                 </Box>
                 <Box sx={{width: "40px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Typography sx={{color: "content.2", fontSize: "14px", fontWeight: "500"}}>
-
-                    </Typography>
                 </Box>
             </Box>
         )

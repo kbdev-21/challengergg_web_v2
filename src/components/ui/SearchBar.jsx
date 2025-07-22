@@ -104,7 +104,7 @@ export function SearchBar({barColor, width}) {
                     onChange={(e) => setSearchText(e.target.value)}
                     onFocus={() => setIsFocus(true)}
                     onBlur={() => setTimeout(() => setIsFocus(false), 100)}
-                    placeholder="Search for champion builds, players"
+                    placeholder="Search for champions, players"
                     sx={{
                         width: "100%",
                         color: "content.1",

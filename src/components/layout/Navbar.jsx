@@ -37,6 +37,7 @@ export function Navbar() {
 
     return (
         <Box sx={{
+            minWidth: "1060px",
             backgroundColor: "bg.2",
             borderBottom: "1px solid",
             borderBottomColor: "bg.3",
@@ -44,6 +45,7 @@ export function Navbar() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            flexWrap: "wrap",
         }}>
             <Box sx={{display: "flex", alignItems: "center"}}>
                 <ChallengerggLogo/>
@@ -52,8 +54,8 @@ export function Navbar() {
                 <NavItem text={"Leaderboards"} url={"/leaderboards"}></NavItem>
                 <NavItem text={"Chat"} url={"/chat"}></NavItem>
             </Box>
-            <Box sx={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
-                {location.pathname === "/" ? null : <SearchBar width={"400px"} barColor={"bg.1"}></SearchBar>}
+            <Box sx={{display: "flex", alignItems: "center", justifyContent: "flex-end", paddingY: "4px"}}>
+                {location.pathname === "/" ? null : <SearchBar width={"360px"} barColor={"bg.1"}></SearchBar>}
                 <Box width={"30px"}></Box>
                 <LanguageIcon sx={{
                     fontSize: "26px",

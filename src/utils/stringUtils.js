@@ -23,6 +23,15 @@ export function kdaFormat(kda) {
   return kda.toFixed(2); // Ensures two decimal places
 }
 
+export function getColorForChampionTier(tier) {
+  if(tier === 'S') return "rate.1";
+  if(tier === 'A') return "rate.2";
+  if(tier === 'B') return "rate.3";
+  if(tier === 'C') return "rate.4";
+  if(tier === 'D') return "rate.5";
+
+}
+
 export function kbScoreDescription(score) {
   if (score < 50) {
     return `Your Key Battle Score is: ${score} (???). You struggled this game! Learn from your mistakes and get better next matches.`;

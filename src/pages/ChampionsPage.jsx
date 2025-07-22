@@ -1,4 +1,4 @@
-import {StatsTable} from "../components/champions_page/StatsTable.jsx";
+import {StatsContent} from "../components/champions_page/StatsContent.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAllChampionStats, fetchPlayerByRiotId} from "../services/challengerggApi.js";
 import {CircularProgress, Typography} from "@mui/material";
@@ -23,7 +23,7 @@ export function ChampionsPage() {
 
     return (
         <>
-            <StatsTable championStats={championStats} />
+            <StatsContent championStats={championStats} />
         </>
     );
 }

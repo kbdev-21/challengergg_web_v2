@@ -1,8 +1,8 @@
 import {Box, Typography} from "@mui/material";
 
 export function KbScoreDisplay({score, extraSx}) {
-    let color = "rate.4";
-    if(score >= 75) color = "rate.1";
+    let color = "sub.lose";
+    if(score >= 75) color = "main.1";
     else if(score >= 50) color = "rate.3";
 
     return (

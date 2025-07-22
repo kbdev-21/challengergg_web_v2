@@ -11,11 +11,11 @@ const darkTheme = createTheme({
       lose: "#e53e3e",
     },
     rate: {
-      1: "#f5b400",
+      1: "#ffbb00",
       2: "#2cbfdd",
       3: "#00bd84",
-      4: "#e53e3e",
-      5: "#b3b3b3"
+      4: "#cccccc",
+      5: "#b79f62"
     },
     bg: {
       1: "#0d0d12",
@@ -25,7 +25,7 @@ const darkTheme = createTheme({
     },
     content: {
       1: "#ffffff",
-      2: "#b3b3b3",
+      2: "#bfbfbf",
       3: "#666666"
     }
   },

@@ -11,7 +11,7 @@ export function PageLayout({ children }) {
             flexDirection: "column",
         }}>
             <Navbar/>
-            <Box sx={{ flex: 1 }}>{children}</Box>
+            <Box sx={{ flex: 1, marginBottom: "100px" }}>{children}</Box>
         </Box>
     )
 }
