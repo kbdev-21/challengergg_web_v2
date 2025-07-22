@@ -3,6 +3,7 @@ import {useQuery} from "@tanstack/react-query";
 import {fetchMatchesByPuuid,} from "../../services/challengerggApi.js";
 import {InternetImage} from "../ui/InternetImage.jsx";
 import {MatchCard} from "./MatchCard.jsx";
+import {LoadingCircle} from "../ui/LoadingCircle.jsx";
 
 export function MatchHistory({playerData}) {
     const puuid = playerData?.puuid;
@@ -12,11 +13,11 @@ export function MatchHistory({playerData}) {
         isError,
     } = useQuery({
         queryKey: ["matchesData", puuid],
-        queryFn: () => fetchMatchesByPuuid(puuid, 0, 20),
+        queryFn: () => fetchMatchesByPuuid(puuid, 0, 15),
     });
 
     if(isLoading) {
-        return <CircularProgress />;
+        return <LoadingCircle />;
     }
 
     if(isError) {

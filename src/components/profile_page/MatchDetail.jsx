@@ -152,19 +152,27 @@ export function MatchDetail({matchData}) {
                 paddingX: "10px"
             }}>
                 <Box sx={{width: "80px", display: "flex"}}>
-                    <TextBadge fontSize={"10px"} left={"80%"} color={"bg.3"} textColor={"content.1"} content={performance?.championLevel}>
-                        <InternetImage
-                        height={champImgSize}
-                        width={champImgSize}
-                        url={getChampionAvatarUrl(performance?.championName, currentPatch)}
-                        borderRadius={"50%"}
-                        extraSx={{
-                            outline: "2px solid",
-                            outlineColor: performance?.win ? "sub.win" : "sub.lose",
-                            outlineOffset: "-1px", // pushes the outline inward
-                        }}/>
-                    </TextBadge>
-
+                    <a
+                        onClick={(e) => e.stopPropagation()}
+                        href={`/champions/${performance?.championName}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{textDecoration: "none", color: "inherit"}}
+                    >
+                        <TextBadge fontSize={"10px"} left={"80%"} color={"bg.3"} textColor={"content.1"} content={performance?.championLevel}>
+                            <InternetImage
+                                height={champImgSize}
+                                width={champImgSize}
+                                url={getChampionAvatarUrl(performance?.championName, currentPatch)}
+                                borderRadius={"50%"}
+                                extraSx={{
+                                    outline: "2px solid",
+                                    outlineColor: performance?.win ? "sub.win" : "sub.lose",
+                                    outlineOffset: "-1px", // pushes the outline inward
+                            }}
+                            />
+                        </TextBadge>
+                    </a>
                     <Box width={"4px"}></Box>
                     <Box sx={{display: "flex", flexDirection: "column"}}>
                         <InternetImage

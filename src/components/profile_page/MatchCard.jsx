@@ -19,6 +19,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {Fragment, useState} from "react";
 import {MatchDetail} from "./MatchDetail.jsx";
+import {Link} from "react-router";
 
 export function MatchCard({matchData, puuid}) {
     const {currentPatch} = useGlobal();
@@ -72,17 +73,26 @@ export function MatchCard({matchData, puuid}) {
                 </Box>
                 <Box sx={{width: "210px"}}>
                     <Box sx={{display: "flex"}}>
-                        <InternetImage
-                            height={champImgSize}
-                            width={champImgSize}
-                            url={getChampionAvatarUrl(selfPerformance?.championName, currentPatch)}
-                            borderRadius={"6px"}
-                            extraSx={{
-                                outline: "2px solid",
-                                outlineColor: win ? "sub.win" : "sub.lose",
-                                outlineOffset: "-3px", // pushes the outline inward
-                            }}
-                        />
+                        <a
+                            onClick={(e) => e.stopPropagation()}
+                            href={`/champions/${selfPerformance?.championName}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{textDecoration: "none", color: "inherit"}}
+                        >
+                            <InternetImage
+                                height={champImgSize}
+                                width={champImgSize}
+                                url={getChampionAvatarUrl(selfPerformance?.championName, currentPatch)}
+                                borderRadius={"6px"}
+                                extraSx={{
+                                    outline: "2px solid",
+                                    outlineColor: win ? "sub.win" : "sub.lose",
+                                    outlineOffset: "-3px", // pushes the outline inward
+                                }}
+                            />
+                        </a>
+
                         <Box width={gapSize}></Box>
                         <Box sx={{display: "flex", flexDirection: "column"}}>
                             <InternetImage

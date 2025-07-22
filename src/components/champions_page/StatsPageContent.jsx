@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {PositionLogo} from "../ui/PositionLogo.jsx";
 import {StatsTable} from "./StatsTable.jsx";
 
-export function StatsContent({championStats}) {
+export function StatsPageContent({championStats}) {
     const {currentPatch} = useGlobal();
 
     const [positionFilter, setPositionFilter] = useState("TOP");
@@ -24,6 +24,28 @@ export function StatsContent({championStats}) {
     return (
         <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             <Box height={"40px"}></Box>
+            <Box sx={{width: "1060px"}}>
+                <Typography
+                    sx={{
+                        color:  "content.1",
+                        fontSize: "18px",
+                        fontWeight: "500"
+                    }}
+                >
+                    Champion Tier List
+                </Typography>
+                <Box height={"2px"}></Box>
+                <Typography
+                    sx={{
+                        color:  "content.2",
+                        fontSize: "14px",
+                        fontWeight: "500"
+                    }}
+                >
+                    Data from Elite Tier matches (Challenger, Grandmaster, Master) - Patch {currentPatch?.split(".").slice(0, 2).join(".")}
+                </Typography>
+            </Box>
+            <Box height={"20px"}></Box>
             <Box sx={{
                 display: "flex",
                 width: "1060px",

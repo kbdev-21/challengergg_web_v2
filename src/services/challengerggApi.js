@@ -14,6 +14,17 @@ export async function fetchAllChampionStats() {
     }
 }
 
+export async function fetchBuildsByChampionName(championName) {
+    const url = `${baseUrl}/api/v1/analytics/champstats/by-championname/${championName}`;
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (e) {
+        console.error("Error fetching data:", e);
+        throw new Error("Failed to fetch data");
+    }
+}
+
 export async function fetchPlayerByRiotId(name, tag) {
     const url = `${baseUrl}/api/v1/players/by-riotid/${name}/${tag}`;
     try {

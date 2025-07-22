@@ -1,7 +1,8 @@
-import {StatsContent} from "../components/champions_page/StatsContent.jsx";
+import {StatsPageContent} from "../components/champions_page/StatsPageContent.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAllChampionStats, fetchPlayerByRiotId} from "../services/challengerggApi.js";
 import {CircularProgress, Typography} from "@mui/material";
+import {LoadingCircle} from "../components/ui/LoadingCircle.jsx";
 
 export function ChampionsPage() {
     const {
@@ -14,7 +15,7 @@ export function ChampionsPage() {
     });
 
     if(isLoading) {
-        return <CircularProgress />;
+        return <LoadingCircle />;
     }
 
     if(isError) {
@@ -23,7 +24,7 @@ export function ChampionsPage() {
 
     return (
         <>
-            <StatsContent championStats={championStats} />
+            <StatsPageContent championStats={championStats} />
         </>
     );
 }

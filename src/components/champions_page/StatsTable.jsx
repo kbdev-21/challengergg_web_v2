@@ -7,6 +7,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {useGlobal} from "../../contexts/GlobalContext.jsx";
 import {useState} from "react";
 import {getColorForChampionTier} from "../../utils/stringUtils.js";
+import {Link} from "react-router";
 
 export function StatsTable({statsList}) {
     const {currentPatch} = useGlobal();
@@ -186,20 +187,24 @@ export function StatsTable({statsList}) {
 
                 <Box sx={{width: "180px", display: "flex", alignItems: "center", paddingY: "2px"}}>
                     <Box width={"16px"}></Box>
-                    <InternetImage
-                        height={"32px"}
-                        width={"32px"}
-                        url={getChampionAvatarUrl(stat?.championName, currentPatch)}
-                        borderRadius={"10px"}
-                        extraSx={{
-                            outline: "2px solid",
-                            outlineColor: "bg.2",
-                            outlineOffset: "-1px", // pushes the outline inward
-                        }}/>
-                    <Box width={"10px"}></Box>
-                    <Typography sx={{color: "content.1", fontSize: "14px", fontWeight: "500"}}>
-                        {stat?.championDisplayName}
-                    </Typography>
+                    <Link to={`/champions/${stat.championName}`} style={{ textDecoration: "none" }}>
+                        <Box sx={{display: "flex",  alignItems: "center", cursor: "pointer"}}>
+                            <InternetImage
+                                height={"32px"}
+                                width={"32px"}
+                                url={getChampionAvatarUrl(stat?.championName, currentPatch)}
+                                borderRadius={"10px"}
+                                extraSx={{
+                                    outline: "2px solid",
+                                    outlineColor: "bg.2",
+                                    outlineOffset: "-1px", // pushes the outline inward
+                                }}/>
+                            <Box width={"10px"}></Box>
+                            <Typography sx={{color: "content.1", fontSize: "14px", fontWeight: "500"}}>
+                                {stat?.championDisplayName}
+                            </Typography>
+                        </Box>
+                    </Link>
                 </Box>
                 <Box sx={{width: "80px", display: "flex", alignItems: "center", justifyContent: "center"}}>
                     <Typography sx={{color: getColorForChampionTier(stat?.tier), fontSize: "14px", fontWeight: "800"}}>

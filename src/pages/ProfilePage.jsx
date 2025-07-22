@@ -4,6 +4,7 @@ import {useParams} from "react-router";
 import {PageLayout} from "../components/layout/PageLayout.jsx";
 import {ProfileHeader} from "../components/profile_page/ProfileHeader.jsx";
 import {fetchPlayerByRiotId} from "../services/challengerggApi.js";
+import {LoadingCircle} from "../components/ui/LoadingCircle.jsx";
 
 export function ProfilePage() {
     const params = useParams();
@@ -20,7 +21,7 @@ export function ProfilePage() {
     });
 
     if(isLoading) {
-        return <CircularProgress />;
+        return <LoadingCircle />;
     }
 
     if(isError) {

@@ -13,6 +13,7 @@ import {HomePage} from "./pages/HomePage.jsx";
 import {ProfilePage} from "./pages/ProfilePage.jsx";
 import {PageLayout} from "./components/layout/PageLayout.jsx";
 import {ChampionsPage} from "./pages/ChampionsPage.jsx";
+import {ChampionBuildPage} from "./pages/ChampionBuildPage.jsx";
 
 const App = () => {
   const { isDarkMode } = useGlobal();
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/profiles/:nameAndTag" element={<ProfilePage />}/>
                 <Route path="/champions" element={<ChampionsPage />}/>
+                <Route path="/champions/:championName" element={<ChampionBuildPage />}/>
             </Routes>
           </PageLayout>
       </BrowserRouter>

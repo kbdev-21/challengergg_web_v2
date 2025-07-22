@@ -1,7 +1,16 @@
 import {Box} from "@mui/material";
 import {Navbar} from "./Navbar.jsx";
+import {useLocation} from "react-router";
+import {useEffect} from "react";
 
 export function PageLayout({ children }) {
+    const location = useLocation();
+
+    useEffect(() => {
+        // Scroll to top whenever the route changes
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
         <Box sx={{
             backgroundColor: "bg.1",
@@ -11,7 +20,7 @@ export function PageLayout({ children }) {
             flexDirection: "column",
         }}>
             <Navbar/>
-            <Box sx={{ flex: 1, marginBottom: "100px" }}>{children}</Box>
+            <Box sx={{ marginBottom: "100px" }}>{children}</Box>
         </Box>
     )
 }
