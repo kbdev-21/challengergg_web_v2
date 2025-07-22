@@ -131,7 +131,7 @@ export function StatsTable({statsList}) {
                     }}
                 />
                 <TitleBox text={"Dmg type"} width={"80px"}/>
-                <TitleBox text={"Weak against"} width={"80px"}/>
+                <TitleBox text={"Weak against"} width={"100px"}/>
                 <Box sx={{
                     width: "40px",
                     display: "flex",
