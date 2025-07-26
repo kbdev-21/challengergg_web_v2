@@ -34,7 +34,8 @@ export function SearchBar({barColor, width}) {
             return;
         }
         if(searchResults.champions.length > 0) {
-            // navigate champion build
+            navigate(`/champions/${searchResults.champions[0].championName}`);
+            reset();
             return;
         }
         if(searchResults.players.length > 0) {
@@ -159,6 +160,7 @@ export function SearchBar({barColor, width}) {
                                 mainText={champion.championDisplayName}
                                 subText={positionTextFormatMap[champion.position]}
                                 imgUrl={getChampionAvatarUrl(champion.championName, currentPatch)}
+                                url={`/champions/${champion.championName}`}
                             />
                         ))}
                         {searchResults?.players.map((player, index) => (
