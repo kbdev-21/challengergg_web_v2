@@ -1,5 +1,5 @@
 import axios from "axios";
-import { runeIdMap, runeStyleIdMap, spellIdMap } from "../utils/maps";
+import { runeIdMap, runeStyleIdMap, spellIdMap } from "../utils/constants.js";
 
 export function getProfileIconUrl(profileIconId, currentPatch) {
   return `https://ddragon.leagueoflegends.com/cdn/${currentPatch}/img/profileicon/${profileIconId}.png`;

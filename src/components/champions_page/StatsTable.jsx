@@ -250,7 +250,7 @@ export function StatsTable({statsList}) {
                 <Box sx={{width: "100px", display: "flex", alignItems: "center", justifyContent: "center"}}>
                     {stat?.matchUps
                         ?.filter((m) => m.picks >= 10)
-                        .filter((m) => m.winRate < 0.45)
+                        .filter((m) => m.winRate < 0.46)
                         .sort((a, b) => a.winRate - b.winRate)
                         .slice(0, 3)
                         .map((matchUp) => (

@@ -1,5 +1,5 @@
 import {Box, CircularProgress, Typography} from "@mui/material";
-import {queueEnumToShortTextMap} from "../../utils/maps.js";
+import {queueEnumToShortTextMap} from "../../utils/constants.js";
 import {
     formatSecondsToMinutesAndSeconds,
     getTimeSinceGameStart, kdaFormat,

@@ -26,7 +26,7 @@ const darkTheme = createTheme({
     content: {
       1: "#ffffff",
       2: "#bfbfbf",
-      3: "#666666"
+      3: "#4d4d4d" //666666
     }
   },
 });

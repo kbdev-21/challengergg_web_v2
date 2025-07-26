@@ -42,7 +42,7 @@ export function StatsPageContent({championStats}) {
                         fontWeight: "500"
                     }}
                 >
-                    Data from Elite Tier matches (Challenger, Grandmaster, Master) - Patch {currentPatch?.split(".").slice(0, 2).join(".")}
+                    Data from Elite Tier matches (Challenger, Grandmaster, Master) - Patch {currentPatch?.split(".").slice(0, 2).join(".")} - VN Server
                 </Typography>
             </Box>
             <Box height={"20px"}></Box>

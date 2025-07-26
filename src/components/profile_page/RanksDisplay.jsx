@@ -1,5 +1,5 @@
 import {Box, Typography} from "@mui/material";
-import {queueEnumToTextMap, rankImgMap} from "../../utils/maps.js";
+import {queueEnumToTextMap, rankImgMap} from "../../utils/constants.js";
 import {InternetImage} from "../ui/InternetImage.jsx";
 import {upperCaseFirstLowerCaseAll} from "../../utils/stringUtils.js";
 

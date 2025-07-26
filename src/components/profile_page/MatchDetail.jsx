@@ -123,7 +123,7 @@ export function MatchDetail({matchData}) {
                 <Box sx={{ display: "flex" }}>
                     <Box
                         sx={{
-                            backgroundColor: "rate.4",
+                            backgroundColor: "sub.lose",
                             width: `${lengthPercent}%`,
                             height: "5px",
                             marginBottom: "4px",

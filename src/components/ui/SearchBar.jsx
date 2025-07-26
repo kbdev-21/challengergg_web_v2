@@ -3,7 +3,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SearchIcon from '@mui/icons-material/Search';
 import {useEffect, useState} from "react";
 import {searchAll} from "../../services/challengerggApi.js";
-import {positionTextFormatMap} from "../../utils/maps.js";
+import {positionTextFormatMap} from "../../utils/constants.js";
 import {upperCaseFirstLowerCaseAll} from "../../utils/stringUtils.js";
 import {getChampionAvatarUrl, getProfileIconUrl} from "../../services/ddragonApi.js";
 import {InternetImage} from "./InternetImage.jsx";

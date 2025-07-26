@@ -1,3 +1,7 @@
+export function formatNumber(number) {
+  return number.toLocaleString("en-US");
+}
+
 export function upperCaseFirstLowerCaseAll(string) {
   if (!string) return "";
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
